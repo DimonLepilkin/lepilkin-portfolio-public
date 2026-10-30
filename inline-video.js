@@ -13,8 +13,11 @@ window.createInlineVideoGallery = function (buttons, works) {
   const poster=document.createElement('img');poster.className='inline-poster';poster.src=work.poster;poster.alt='';
   const surface=document.createElement('button');surface.type='button';surface.className='inline-surface';
   const toggle=document.createElement('button');toggle.type='button';toggle.className='inline-toggle';
+  const fullscreen=document.createElement('button');fullscreen.type='button';fullscreen.className='inline-fullscreen';
+  fullscreen.setAttribute('aria-label','На весь экран: '+work.title);
+  fullscreen.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>';
   const error=document.createElement('p');error.className='inline-error';error.setAttribute('role','status');container.append(error);
-  cover.append(video,poster,surface,toggle);button.replaceWith(container);
+  cover.append(video,poster,surface,toggle,fullscreen);button.replaceWith(container);
   const record={video,toggle,pending:0,overlayTimer:0,chromeVisible:true,fullscreen:false,button,container};records.push(record);
   function sync(){
    const playing=!video.paused&&!video.ended;
@@ -50,6 +53,23 @@ window.createInlineVideoGallery = function (buttons, works) {
    sync();
    if(mobile()&&!video.paused&&!record.fullscreen)record.overlayTimer=setTimeout(hideControls,1000);
   }
+  // Enter fullscreen directly in the click handler: iPhone needs the video-only
+  // WebKit method and the original user gesture must remain active.
+  fullscreen.addEventListener('pointerdown',clearTimer);
+  fullscreen.addEventListener('touchstart',clearTimer,{passive:true});
+  fullscreen.addEventListener('click',async()=>{
+   clearTimer();error.textContent='';record.fullscreen=true;video.controls=true;
+   try{
+    if(typeof video.webkitEnterFullscreen==='function')video.webkitEnterFullscreen();
+    else if(typeof video.requestFullscreen==='function')await video.requestFullscreen();
+    else if(typeof video.webkitRequestFullscreen==='function')video.webkitRequestFullscreen();
+    else throw new Error('Fullscreen unavailable');
+   }catch(e){
+    record.fullscreen=false;showControls();
+    error.textContent='Не удалось открыть полный экран. Попробуйте ещё раз после начала воспроизведения.';
+   }
+  });
+  video.addEventListener('loadedmetadata',()=>cover.classList.add('has-media'));
   // Do not hide native controls while the visitor is dragging the seek bar.
   ['pointerdown','touchstart'].forEach(event=>video.addEventListener(event,()=>{if(mobile())clearTimer()},{passive:true}));
   ['pointerup','pointercancel','touchend','touchcancel'].forEach(event=>video.addEventListener(event,()=>{if(mobile())showControls()},{passive:true}));

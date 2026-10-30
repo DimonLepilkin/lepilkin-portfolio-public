@@ -59,3 +59,10 @@
  .inline-work .cover.controls-visible .inline-toggle{opacity:1}
  .inline-work .cover.has-frame.controls-visible .inline-surface{bottom:48px;height:auto}
 }
+
+/* A dedicated mobile fullscreen button stays reachable after playback controls hide. */
+.inline-fullscreen{display:none}
+@media(max-width:600px), (hover:none) and (pointer:coarse){
+ .inline-work .cover.has-media .inline-fullscreen{display:grid;place-items:center;position:absolute;z-index:3;right:8px;top:8px;width:40px;height:40px;padding:9px;border:1px solid #ffffff40;border-radius:8px;background:#08090c99;color:#fff;cursor:pointer;touch-action:manipulation}
+ .inline-fullscreen svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+}
