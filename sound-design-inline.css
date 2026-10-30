@@ -40,3 +40,16 @@
  .experiment-gallery .info p{font-size:12px}
  .experiment-gallery .work:hover,.experiment-gallery .work:focus-within{transform:none}
 }
+
+/* Cover the poster independently; the actual video always retains its full frame. */
+.inline-work .cover .inline-poster{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;transform:none;filter:none}
+.inline-work .cover.has-frame .inline-poster{display:none}
+.inline-surface{display:none}
+@media(max-width:600px), (hover:none) and (pointer:coarse){
+ .inline-work .cover:not(.has-frame) .inline-poster{display:block}
+ /* A real tap target avoids Safari's native tap-to-show-controls behavior.
+    Leave the bottom strip clear for seeking, volume and fullscreen. */
+ .inline-surface{display:block;position:absolute;inset:0;z-index:1;width:100%;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation}
+ .inline-work .cover.has-frame .inline-surface{bottom:48px;height:auto}
+ .inline-work .cover .inline-toggle{pointer-events:none;z-index:2}
+}
