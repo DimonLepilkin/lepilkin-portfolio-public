@@ -55,7 +55,7 @@
 /* Mobile: the center toggles playback; the surrounding frame only toggles controls.
    Removing native controls also removes Safari's delayed central overlay. */
 @media(max-width:600px), (hover:none) and (pointer:coarse){
- .inline-work .cover .inline-toggle{opacity:0;visibility:visible;pointer-events:auto;transition:none}
+ .inline-work .cover:not(.controls-visible) .inline-toggle{opacity:0;visibility:visible;pointer-events:auto;transition:none}
  .inline-work .cover.controls-visible .inline-toggle{opacity:1}
  .inline-work .cover.has-frame.controls-visible .inline-surface{bottom:48px;height:auto}
 }
