@@ -30,7 +30,6 @@
 
 /* Touch playback: hide the central overlay completely while native controls are active. */
 @media(max-width:600px), (hover:none) and (pointer:coarse){
- .inline-work .cover.is-playing .inline-toggle{opacity:0;visibility:hidden;pointer-events:none}
  .inline-work,.inline-work:hover,.inline-work:focus-within{transform:none}
  .experiment-gallery .work:nth-child(n),.cinema-experiment .experiment-gallery .work:nth-child(n){position:relative;width:100%;left:auto;right:auto;top:auto;transform:none}
  .experiment-gallery,.cinema-experiment .experiment-gallery{display:grid;gap:24px;aspect-ratio:auto;margin-top:0}
@@ -50,13 +49,13 @@
  /* A real tap target avoids Safari's native tap-to-show-controls behavior.
     Leave the bottom strip clear for seeking, volume and fullscreen. */
  .inline-surface{display:block;position:absolute;inset:0;z-index:1;width:100%;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation}
- .inline-work .cover.has-frame .inline-surface{bottom:48px;height:auto}
- .inline-work .cover .inline-toggle{pointer-events:none;z-index:2}
+ .inline-work .cover .inline-toggle{pointer-events:auto;z-index:2}
 }
 
-/* Safari/Chromium may retain their own central play overlay after our button hides.
-   Hide that overlay after one second; keep the native bottom controls intact. */
+/* Mobile: the center toggles playback; the surrounding frame only toggles controls.
+   Removing native controls also removes Safari's delayed central overlay. */
 @media(max-width:600px), (hover:none) and (pointer:coarse){
- .inline-work video.hide-play-overlay::-webkit-media-controls-overlay-play-button{display:none!important;opacity:0!important;pointer-events:none}
- .inline-work video.hide-play-overlay::-webkit-media-controls-start-playback-button{display:none!important;opacity:0!important;pointer-events:none}
+ .inline-work .cover .inline-toggle{opacity:0;visibility:visible;pointer-events:auto;transition:none}
+ .inline-work .cover.controls-visible .inline-toggle{opacity:1}
+ .inline-work .cover.has-frame.controls-visible .inline-surface{bottom:48px;height:auto}
 }
