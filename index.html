@@ -11,10 +11,10 @@
 <body><main>
 <header><p class="eyebrow">Звукорежиссёр</p><h1>ДМИТРИЙ ЛЕПИЛКИН</h1><p class="subtitle">Сведение музыки · Звуковой постпродакшен · Саунд-дизайн</p><a class="cta" href="#works">Смотреть работы <span aria-hidden="true">↓</span></a></header>
 <section id="works" aria-label="Направления работ"><div class="grid">
-<button class="category" data-category="Кино" aria-label="Кино"><div class="art"><img src="cinema.png?v=3" alt="" loading="lazy"><span class="number">01 / CINEMA</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Звуковой постпродакшен · Перезапись</p></div></button>
-<button class="category" data-category="Музыка" aria-label="Музыка"><div class="art"><img src="music.png?v=5" alt="" loading="lazy"><span class="number">02 / MUSIC</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Редакция · Сведение · Мастеринг</p></div></button>
-<button class="category" data-category="Трейлеры" aria-label="Трейлеры"><div class="art"><img src="trailers.png" alt="" loading="lazy"><span class="number">03 / TRAILERS</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Звуковое оформление · Сведение</p></div></button>
-<button class="category" data-category="Саунд-дизайн" aria-label="Саунд-дизайн"><div class="art sound"><img src="sound-design.png?v=6" alt="" loading="lazy"><span class="number">04 / SOUND DESIGN</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Звуковые эффекты · Атмосферы · Текстуры</p></div></button>
+<button class="category" data-category="Кино" aria-label="Кино"><div class="art"><img src="cinema.png?v=3" alt="" loading="lazy"><span class="watch-label">СМОТРЕТЬ</span><span class="number">01 / CINEMA</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Звуковой постпродакшен · Перезапись</p></div></button>
+<button class="category" data-category="Музыка" aria-label="Музыка"><div class="art"><img src="music.png?v=5" alt="" loading="lazy"><span class="watch-label">СМОТРЕТЬ</span><span class="number">02 / MUSIC</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Редакция · Сведение · Мастеринг</p></div></button>
+<button class="category" data-category="Трейлеры" aria-label="Трейлеры"><div class="art"><img src="trailers.png" alt="" loading="lazy"><span class="watch-label">СМОТРЕТЬ</span><span class="number">03 / TRAILERS</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Звуковое оформление · Сведение</p></div></button>
+<button class="category" data-category="Саунд-дизайн" aria-label="Саунд-дизайн"><div class="art sound"><img src="sound-design.png?v=6" alt="" loading="lazy"><span class="watch-label">СМОТРЕТЬ</span><span class="number">04 / SOUND DESIGN</span><span class="arrow" aria-hidden="true">↗</span></div><div class="caption"><p>Звуковые эффекты · Атмосферы · Текстуры</p></div></button>
 </div></section><section class="about" aria-label="О Дмитрии Лепилкине"><div class="about-copy"><p>Окончил СПбГУП по специальности «Звукорежиссура».</p><p>Более 15 лет в звукорежиссуре, из них 12 лет — на телевидении.</p><p>Занимаюсь сведением и мастерингом музыки, звуковым постпродакшеном кино, трейлеров и рекламы.</p></div><div class="about-photo"><img src="about.png" alt="Дмитрий Лепилкин в студии" loading="lazy"></div></section><footer class="footer contact-footer"><span class="contact-label">СВЯЗАТЬСЯ СО МНОЙ</span><nav class="contact-links" aria-label="Связаться с Дмитрием"><a href="https://t.me/dmitry_sandalik" target="_blank" rel="noopener noreferrer" aria-label="Telegram: @dmitry_sandalik" title="Telegram"><img src="telegram-logo.png" alt="Telegram"></a><a href="https://vk.ru/lepilkin" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" title="VK"><img src="vk-logo.png" alt="VK"></a><a href="https://max.ru/u/f9LHodD0cOIl2ZSZwa2K6gN7Z_w7_o9onIcd2tIZ8EqZnX-kVQxglE42egE" target="_blank" rel="noopener noreferrer" aria-label="MAX" title="MAX"><img src="max-logo.png" alt="MAX"></a></nav></footer>
 </main><dialog id="category-dialog" aria-labelledby="dialog-title"><h2 id="dialog-title"></h2><p>Здесь появятся избранные работы. Сейчас это предварительный макет раздела.</p><form method="dialog"><button>Закрыть</button></form></dialog><script>const modal=document.getElementById('category-dialog');document.querySelectorAll('[data-category]').forEach(button=>button.addEventListener('click',()=>{if(button.dataset.category==='Саунд-дизайн'){window.location.href='sound-design.html';return}if(button.dataset.category==='Кино'){window.location.href='cinema.html';return}if(button.dataset.category==='Трейлеры'){window.location.href='trailers.html';return}if(button.dataset.category==='Музыка'){window.location.href='music-player-test.html';return}document.getElementById('dialog-title').textContent=button.dataset.category;modal.showModal()}));</script></body></html>
 
@@ -66,4 +66,19 @@ h1{font-size:clamp(34px,5.6vw,68px);line-height:1.08;letter-spacing:-.035em}
 .contact-footer{justify-content:flex-end;align-items:center;gap:22px;border-top:1px solid #29282f;border-bottom:1px solid #29282f;padding:25px 0;margin:48px 0 28px;letter-spacing:.025em}
 .contact-label{font-size:13px;color:#bbb9c3}.contact-links{display:flex;align-items:center;gap:14px}.contact-links a{display:flex;width:30px;height:36px;align-items:center;justify-content:center;border-radius:5px}.contact-links img{display:block;width:23px;height:23px;object-fit:contain;filter:grayscale(1);opacity:.74;transition:filter .2s,opacity .2s,transform .2s}.contact-links a:hover img,.contact-links a:focus-visible img{filter:none;opacity:1;transform:translateY(-2px)}
 @media(max-width:600px){.contact-footer{gap:16px;padding:22px 0;margin-top:32px}.contact-label{font-size:11px}.contact-links{gap:10px}.contact-links img{width:22px;height:22px}}
+</style>
+
+<style>
+/* Keep image edges aligned even when neighboring captions wrap to different lengths. */
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.category{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;min-width:0;width:100%}
+.art{width:100%;flex:none}
+.caption{width:100%;text-align:left}
+.watch-label{position:absolute;z-index:2;bottom:12px;left:50%;transform:translateX(-50%);padding:6px 13px;border:1px solid #ffffff30;border-radius:20px;background:#0c0d10c9;color:#eeedf2;font-size:10px;line-height:1.2;letter-spacing:.1em;white-space:nowrap;pointer-events:none;backdrop-filter:blur(6px)}
+@media(max-width:600px){
+ .grid{gap:22px 12px}
+ .caption{padding-top:10px;min-height:46px}
+ .caption p{line-height:1.6;overflow-wrap:break-word}
+ .watch-label{bottom:6px;padding:4px 9px;font-size:8px;letter-spacing:.07em}
+}
 </style>

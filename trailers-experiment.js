@@ -1,7 +1,7 @@
 // Shared restrained entrance; each gallery keeps its layout and playback mode.
 {
  const gallery=document.querySelector('.experiment-gallery, [data-gallery-entrance]');
- if(gallery&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!matchMedia('(max-width:600px)').matches){
+ if(gallery&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!matchMedia('(max-width:600px), (hover:none) and (pointer:coarse)').matches){
   const bounds=gallery.getBoundingClientRect();
   const zoom=bounds.width/gallery.offsetWidth||1;
   const centerX=bounds.left+bounds.width/2;

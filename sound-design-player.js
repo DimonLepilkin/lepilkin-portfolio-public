@@ -28,37 +28,5 @@ video.addEventListener('error',()=>{if(dialog.open)error.textContent='Не уд�
 document.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
 dialog.addEventListener('close',()=>{session++;video.pause();video.removeAttribute('src');video.load();error.textContent='';sync()});
 } else {
- // In-place playback has no dialog and creates no audio/video requests before Play.
- const records=[];let generation=0;
- const playIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg>';
- const pauseIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>';
- document.querySelectorAll('.open-work').forEach(button=>{
-  const work=works[Number(button.dataset.work)],container=document.createElement('div');container.className='inline-work';
-  container.append(...button.childNodes);button.replaceWith(container);
-  const cover=container.querySelector('.cover');cover.replaceChildren();
-  const video=document.createElement('video');video.preload='none';video.playsInline=true;video.poster=work.poster;video.setAttribute('aria-label',work.title);video.setAttribute('aria-hidden','true');
-  const toggle=document.createElement('button');toggle.type='button';toggle.className='inline-toggle';
-  const error=document.createElement('p');error.className='inline-error';error.setAttribute('role','status');container.append(error);
-  cover.append(video,toggle);
-  const record={video,toggle,pending:0};records.push(record);
-  function sync(){cover.classList.toggle('is-playing',!video.paused);toggle.innerHTML=video.paused?playIcon:pauseIcon;toggle.setAttribute('aria-label',(video.paused?'Воспроизвести: ':'Пауза: ')+work.title)}
-  toggle.addEventListener('click',async()=>{
-   if(!video.paused){video.pause();return}
-   const token=++generation;record.pending=token;
-   records.forEach(other=>{if(other!==record)other.video.pause()});error.textContent='';
-   if(!video.getAttribute('src')){video.removeAttribute('aria-hidden');video.src=work.src;video.controls=true}
-   try{await video.play();if(token!==generation)video.pause()}
-   catch(e){if(token===generation&&e.name!=='AbortError')error.textContent='Не удалось начать воспроизведение. Нажмите Play ещё раз.'}
-   finally{if(record.pending===token)record.pending=0;sync()}
-  });
-  video.addEventListener('play',()=>{
-   if(record.pending&&record.pending!==generation){video.pause();return}
-   if(!record.pending)generation++;
-   records.forEach(other=>{if(other!==record)other.video.pause()});sync();
-  });
-  ['pause','ended'].forEach(event=>video.addEventListener(event,sync));
-  function describeVolume(){video.setAttribute('aria-description','Громкость: '+Math.round(video.volume*100)+'%'+(video.muted?' · Звук выключен':''))}
-  video.addEventListener('volumechange',describeVolume);describeVolume();
-  video.addEventListener('error',()=>{error.textContent='Не удалось загрузить видео. Попробуйте ещё раз.'});sync();
- });
+ createInlineVideoGallery(document.querySelectorAll('.open-work'),works);
 }

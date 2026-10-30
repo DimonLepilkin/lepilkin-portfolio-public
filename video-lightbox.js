@@ -4,6 +4,15 @@ const works=JSON.parse(document.getElementById('video-works').textContent);
 const dialog=document.querySelector('dialog'),viewer=document.querySelector('.viewer'),screen=document.querySelector('.screen'),video=document.querySelector('video'),toggle=document.querySelector('.center-toggle'),error=document.querySelector('.error');
 const playIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg>',pauseIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>';
 let session=0,origin=null,opening=null,closing=false;
+const mobilePlayback=matchMedia('(max-width:600px), (hover:none) and (pointer:coarse)');
+let restoreCards=null;
+function syncPlaybackMode(){
+ if(restoreCards){restoreCards();restoreCards=null}
+ if(mobilePlayback.matches){
+  if(dialog.open){video.pause();dialog.close()}
+  restoreCards=createInlineVideoGallery(document.querySelectorAll('.open-work'),works);
+ }
+}
 const duration=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?0:220;
 function sync(){screen.classList.toggle('paused',video.paused);toggle.setAttribute('aria-label',video.paused?'Воспроизвести видео':'Пауза');toggle.innerHTML=video.paused?playIcon:pauseIcon}
 async function play(){const token=session;try{await video.play()}catch(e){if(token===session&&dialog.open&&!closing&&e.name!=='AbortError')error.textContent='Нажмите Play, чтобы начать воспроизведение.'}}
@@ -30,3 +39,6 @@ toggle.addEventListener('click',()=>video.paused?play():video.pause());['play','
 video.addEventListener('error',()=>{if(dialog.open&&!closing)error.textContent='Не удалось загрузить видео. Попробуйте открыть его ещё раз.'});
 document.querySelector('.close').addEventListener('click',closePlayer);dialog.addEventListener('cancel',event=>{event.preventDefault();closePlayer()});dialog.addEventListener('click',event=>{if(event.target===dialog)closePlayer()});
 dialog.addEventListener('close',()=>{session++;video.pause();document.documentElement.classList.remove('video-open');dialog.classList.remove('closing');closing=false;error.textContent='';sync();origin?.focus({preventScroll:true})});
+
+mobilePlayback.addEventListener('change',syncPlaybackMode);
+syncPlaybackMode();

@@ -27,3 +27,16 @@
 
 /* Center the portrait video against the pair of landscape works without cropping it. */
 .gallery .portrait.work{align-self:center}
+
+/* Touch playback: hide the central overlay completely while native controls are active. */
+@media(max-width:600px), (hover:none) and (pointer:coarse){
+ .inline-work .cover.is-playing .inline-toggle{opacity:0;visibility:hidden;pointer-events:none}
+ .inline-work,.inline-work:hover,.inline-work:focus-within{transform:none}
+ .experiment-gallery .work:nth-child(n),.cinema-experiment .experiment-gallery .work:nth-child(n){position:relative;width:100%;left:auto;right:auto;top:auto;transform:none}
+ .experiment-gallery,.cinema-experiment .experiment-gallery{display:grid;gap:24px;aspect-ratio:auto;margin-top:0}
+ .experiment-gallery .cover::after{display:none}
+ .experiment-gallery .work:nth-child(n) .info{position:static;margin:10px 0 0;text-align:left;pointer-events:auto}
+ .experiment-gallery .info h2{font-size:16px;margin-bottom:6px}
+ .experiment-gallery .info p{font-size:12px}
+ .experiment-gallery .work:hover,.experiment-gallery .work:focus-within{transform:none}
+}
