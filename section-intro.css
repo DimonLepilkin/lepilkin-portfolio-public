@@ -1,0 +1,5 @@
+/* Shared heading/description spacing; gallery and player layouts are untouched. */
+.section-intro,.intro.section-intro{margin:42px 0 30px}
+.section-intro h1{margin:0 0 14px}
+.section-intro p{margin:0;font-size:14px;line-height:1.7;color:#96949f;max-width:640px}
+@media(max-width:600px){.section-intro,.intro.section-intro{margin:32px 0 24px}.section-intro h1{margin-bottom:14px}.section-intro p{font-size:13px}}

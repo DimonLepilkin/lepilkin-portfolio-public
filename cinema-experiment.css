@@ -1,0 +1,9 @@
+/* Two larger cards use the approved trailer entrance and lightbox. */
+.cinema-experiment main{max-width:1200px}
+.cinema-experiment .experiment-gallery{aspect-ratio:1.6}
+.cinema-experiment .experiment-gallery .work:nth-child(1){width:68%;left:0;top:0}
+.cinema-experiment .experiment-gallery .work:nth-child(2){width:68%;right:0;top:40%}
+.cinema-experiment .experiment-gallery .work:nth-child(1) .info{right:56%}
+.cinema-experiment .experiment-gallery .work:nth-child(2) .info{left:18px;right:18px;text-align:left}
+@media(min-width:601px) and (max-width:850px){.cinema-experiment .experiment-gallery .work:nth-child(2) .info{left:12px;right:12px}}
+@media(max-width:600px){.cinema-experiment .experiment-gallery{aspect-ratio:auto}.cinema-experiment .experiment-gallery .work:nth-child(n){width:100%;left:auto;right:auto;top:auto}.cinema-experiment .experiment-gallery .work:nth-child(n) .info{position:static;margin:10px 0 0;text-align:left}}

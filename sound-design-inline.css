@@ -1,0 +1,29 @@
+.inline-work{width:100%;min-width:0}
+.inline-work .cover video{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:contain;background:#000}
+.inline-toggle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;width:54px;height:54px;padding:0;border-radius:50%;border:1px solid #ffffff70;background:#08090c66;backdrop-filter:blur(8px);color:white;display:grid;place-items:center;cursor:pointer;transition:opacity .18s,background .18s}
+.inline-toggle:hover{background:#08090caa}.inline-toggle svg{width:26px;height:26px;fill:currentColor}
+.inline-work .cover.is-playing .inline-toggle{opacity:0}.inline-work .cover:hover .inline-toggle,.inline-toggle:focus-visible{opacity:1}
+.inline-error{font-size:12px;line-height:1.6;color:#b8b5c2;margin:8px 0 0}.inline-error:empty{display:none}
+.mode-switch{position:fixed;bottom:14px;right:14px;z-index:5;display:flex;align-items:center;gap:4px;padding:6px;border:1px solid #ffffff16;border-radius:9px;background:#111216ed;color:#96949f;font-size:11px;box-shadow:0 4px 16px #0004}
+.mode-switch span{padding:0 5px}.mode-switch a{padding:7px 9px;color:#aaa6b5;text-decoration:none;border-radius:5px}.mode-switch a[aria-current="true"]{background:#ffffff0e;color:#eeedf2}
+@media(max-width:600px){.inline-toggle{width:48px;height:48px}.mode-switch{bottom:8px;right:8px}}
+@media(hover:none){.inline-work .cover.is-playing .inline-toggle{opacity:0}.inline-toggle:focus-visible{opacity:.75}}
+@media(prefers-reduced-motion:reduce){.inline-toggle{transition:none}}
+
+/* Card transforms do not change the gallery layout or the in-place video bounds. */
+.gallery[data-gallery-entrance]{isolation:isolate}
+.gallery[data-gallery-entrance] .work{position:relative}
+
+/* A small hover lift scales the player as a whole, without changing the grid. */
+@media(hover:hover) and (pointer:fine){
+ .inline-work{transform-origin:center;transition:transform .25s ease-out}
+ .inline-work:hover,.inline-work:focus-within{transform:scale(1.025)}
+ .gallery[data-gallery-entrance] .work:hover,.gallery[data-gallery-entrance] .work:focus-within{z-index:2}
+}
+@media(prefers-reduced-motion:reduce){
+ .inline-work{transition:none}
+ .inline-work:hover,.inline-work:focus-within{transform:none}
+}
+
+/* Center the portrait video against the pair of landscape works without cropping it. */
+.gallery .portrait.work{align-self:center}
