@@ -53,3 +53,10 @@
  .inline-work .cover.has-frame .inline-surface{bottom:48px;height:auto}
  .inline-work .cover .inline-toggle{pointer-events:none;z-index:2}
 }
+
+/* Safari/Chromium may retain their own central play overlay after our button hides.
+   Hide that overlay after one second; keep the native bottom controls intact. */
+@media(max-width:600px), (hover:none) and (pointer:coarse){
+ .inline-work video.hide-play-overlay::-webkit-media-controls-overlay-play-button{display:none!important;opacity:0!important;pointer-events:none}
+ .inline-work video.hide-play-overlay::-webkit-media-controls-start-playback-button{display:none!important;opacity:0!important;pointer-events:none}
+}

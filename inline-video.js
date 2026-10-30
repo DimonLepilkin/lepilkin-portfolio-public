@@ -15,7 +15,7 @@ window.createInlineVideoGallery = function (buttons, works) {
   const toggle=document.createElement('button');toggle.type='button';toggle.className='inline-toggle';
   const error=document.createElement('p');error.className='inline-error';error.setAttribute('role','status');container.append(error);
   cover.append(video,poster,surface,toggle);button.replaceWith(container);
-  const record={video,toggle,pending:0,button,container};records.push(record);
+  const record={video,toggle,pending:0,overlayTimer:0,button,container};records.push(record);
   function sync(){
    const playing=!video.paused&&!video.ended;
    cover.classList.toggle('is-playing',playing);
@@ -36,19 +36,25 @@ window.createInlineVideoGallery = function (buttons, works) {
   }
   toggle.addEventListener('click',togglePlayback);
   surface.addEventListener('click',togglePlayback);
-  video.addEventListener('playing',()=>cover.classList.add('has-frame'));
+  function resetOverlay(){clearTimeout(record.overlayTimer);video.classList.remove('hide-play-overlay')}
+  video.addEventListener('playing',()=>{
+   cover.classList.add('has-frame');resetOverlay();
+   if(matchMedia('(max-width:600px), (hover:none) and (pointer:coarse)').matches){
+    record.overlayTimer=setTimeout(()=>{if(!video.paused)video.classList.add('hide-play-overlay')},1000);
+   }
+  });
   video.addEventListener('play',()=>{
    if(record.pending&&record.pending!==generation){video.pause();return}
    if(!record.pending)generation++;
    records.forEach(other=>{if(other!==record)other.video.pause()});sync();
   });
-  ['pause','ended'].forEach(event=>video.addEventListener(event,sync));
+  ['pause','ended'].forEach(event=>video.addEventListener(event,()=>{resetOverlay();sync()}));
   function describeVolume(){video.setAttribute('aria-description','Громкость: '+Math.round(video.volume*100)+'%'+(video.muted?' · Звук выключен':''))}
   video.addEventListener('volumechange',describeVolume);describeVolume();
   video.addEventListener('error',()=>{error.textContent='Не удалось загрузить видео. Попробуйте ещё раз.'});sync();
  });
  return ()=>{
   generation++;
-  records.forEach(({video,container,button})=>{video.pause();video.removeAttribute('src');video.load();container.replaceWith(button)});
+  records.forEach(({video,container,button,overlayTimer})=>{clearTimeout(overlayTimer);video.pause();video.removeAttribute('src');video.load();container.replaceWith(button)});
  };
 };
