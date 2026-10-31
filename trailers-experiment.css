@@ -19,4 +19,4 @@
 @media(prefers-reduced-motion:reduce){.experiment-gallery .work{transition:none}.experiment-gallery .work:hover,.experiment-gallery .work:focus-within{transform:none}}
 
 /* Fourth trailer extends the composition without moving the first three. */
-@media(min-width:601px) and (hover:hover) and (pointer:fine){.experiment-gallery.four-works{margin-bottom:calc(18% + 32px)}.experiment-gallery.four-works .work:nth-child(4){width:54%;right:0;top:79%;z-index:4}}
+@media(min-width:601px) and (hover:hover) and (pointer:fine){.experiment-gallery.four-works{margin-bottom:calc(18% + 32px)}.experiment-gallery.four-works .work:nth-child(4){width:54%;right:0;top:79%;z-index:2}}
