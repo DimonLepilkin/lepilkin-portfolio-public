@@ -59,3 +59,12 @@
 @media(max-width:600px){.desktop-card--post .cover-copy{width:55%}}
 .cover-copy::before{width:29cqw}
 .cover-copy-word{white-space:nowrap}
+
+/* Unified centered header on desktop and mobile; existing typography is preserved. */
+.desktop-navigation{flex-direction:column;justify-content:center;gap:16px;text-align:center}
+.header-specialties{justify-content:center}
+.desktop-card--music .cover-copy{top:39.2%}
+@media(max-width:600px){
+ .desktop-navigation{gap:16px}
+ .header-specialties span{padding-inline:8px}
+}
