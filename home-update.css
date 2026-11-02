@@ -1,0 +1,34 @@
+/* The desktop presentation is separate; the approved mobile home cascade is intact. */
+.desktop-navigation,.desktop-cards,.desktop-work-heading{display:none}
+#about,#contacts{scroll-margin-top:24px}
+@media(min-width:601px){
+ main{max-width:1680px;padding-inline:36px}
+ .desktop-navigation{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:32px 0 20px}
+ .brand{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);flex-shrink:0}
+ .brand strong{font-size:clamp(23px,2.4vw,38px);font-weight:600;letter-spacing:-.025em}
+ .brand span{font-size:clamp(9px,1vw,14px);letter-spacing:.22em;color:#b2b7c3}
+ .navigation-links{display:flex;gap:clamp(20px,3.5vw,64px);align-items:center}
+ .navigation-links a{color:#eeedf2;text-decoration:none;font-size:clamp(14px,1.35vw,20px);padding:10px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+ .navigation-links a:hover,.navigation-links a[aria-current]{color:#c58ae5;border-bottom-color:#ae65d4}
+ header.home-intro{padding:18px 0 12px}
+ .home-intro .eyebrow{font-size:11px;letter-spacing:.19em;margin-bottom:10px}
+ .home-intro h1{font-size:clamp(27px,3vw,43px);line-height:1.1;letter-spacing:-.025em}
+ .home-intro .subtitle,.home-intro>.cta,.mobile-categories{display:none}
+ #works{border-top:0;padding-top:0;scroll-margin-top:20px}
+ .desktop-work-heading{display:block;text-align:center;margin:15px 0 24px}
+ .desktop-work-heading .cta{padding:11px 23px;font-size:11px}
+ .desktop-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;scroll-margin-top:24px}
+ .desktop-card{display:block;border-radius:28px;overflow:hidden;border:1px solid #ffffff20;background:#070b10;transition:transform .25s ease, border-color .25s ease}
+ .desktop-card img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+ .desktop-card:first-child:hover{border-color:#a96bc180;transform:translateY(-3px)}
+ .desktop-card:last-child:hover{border-color:#00b7c180;transform:translateY(-3px)}
+ /* Keep the existing about and contact blocks at their previous desktop width. */
+ .about,.contact-footer{max-width:1136px;margin-left:auto;margin-right:auto}
+}
+@media(min-width:601px) and (max-width:900px){
+ .desktop-navigation{gap:20px;flex-wrap:wrap}
+ .brand strong{font-size:26px}.brand span{font-size:10px}
+ .navigation-links{gap:28px}.navigation-links a{font-size:15px}
+ main{padding-inline:26px}.desktop-cards{gap:20px}.desktop-card{border-radius:20px}
+}
+@media(prefers-reduced-motion:reduce){.desktop-card,.navigation-links a{transition:none}.desktop-card:hover{transform:none}}

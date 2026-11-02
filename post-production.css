@@ -1,0 +1,33 @@
+/* Existing gallery styles and players, scoped into a single document. */
+html{scroll-behavior:smooth}
+.post-production main{max-width:1200px}
+.production-intro{margin-bottom:48px}
+.production-intro h1{font-size:28px}
+.production-navigation{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.production-navigation a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 18px;border:1px solid #54445e;border-radius:24px;color:#d2cbdc;font-size:11px;letter-spacing:.08em;text-decoration:none;transition:background .2s,border-color .2s}
+.production-navigation a:hover{background:#9c71be18;border-color:#9d7cb8}
+.production-section{scroll-margin-top:28px;margin-top:72px}
+.production-section>.section-intro{margin:0 0 30px}
+.production-section>.section-intro h2{font-size:28px;font-weight:500;letter-spacing:.07em;margin:0 0 14px}
+.production-section>.section-intro p{max-width:820px}
+.sound-production{max-width:986px;margin-inline:auto}
+.sound-gallery{display:grid;grid-template-columns:1.55fr 1fr;gap:24px;align-items:start}
+.sound-gallery .landscapes{display:grid;gap:28px}
+.sound-gallery .portrait .cover{aspect-ratio:9/16}
+.sound-gallery .portrait.work{align-self:center}
+.sound-gallery .work-title{display:block;font-size:13px;line-height:1.5;font-weight:400;margin-top:10px;color:#b8b5c2;overflow-wrap:break-word}
+.sound-gallery svg{width:26px;height:26px;fill:currentColor}
+@media(max-width:600px),(hover:none) and (pointer:coarse){
+ .production-intro{margin-bottom:40px}
+ .production-intro h1{font-size:clamp(20px,5.5vw,28px);overflow-wrap:anywhere}
+ .production-navigation{gap:8px}
+ .production-navigation a{padding:10px 13px;font-size:10px}
+ .production-section{margin-top:56px;scroll-margin-top:20px}
+ .production-section>.section-intro{margin-bottom:24px}
+ .production-section>.section-intro h2{font-size:23px}
+ .sound-gallery{grid-template-columns:1fr;gap:28px}
+ .sound-gallery .landscapes{gap:24px}
+ .sound-gallery .portrait.work{width:min(100%,300px);justify-self:center}
+ .sound-gallery .work-title{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.production-navigation a{transition:none}}
