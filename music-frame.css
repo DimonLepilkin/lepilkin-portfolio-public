@@ -8,16 +8,16 @@
  inset:-18px;
  z-index:-1;
  pointer-events:none;
- border:1px solid #8a5cc8;
+ border:1px solid #00f0f0;
  border-radius:24px;
  background:#0c0d10;
- box-shadow:0 0 14px rgba(138,92,200,.25),0 0 52px rgba(138,92,200,.10);
+ box-shadow:0 0 14px rgba(0,240,240,.25),0 0 52px rgba(0,240,240,.10);
  opacity:1;
 }
 @media(max-width:1000px){
- #players::before{box-shadow:0 0 12px rgba(138,92,200,.23),0 0 28px rgba(138,92,200,.09)}
+ #players::before{box-shadow:0 0 12px rgba(0,240,240,.23),0 0 28px rgba(0,240,240,.09)}
 }
 @media(max-width:600px){
  #players:empty{min-height:681px}
- #players::before{inset:-8px;border-radius:21px;box-shadow:0 0 10px rgba(138,92,200,.22),0 0 22px rgba(138,92,200,.08)}
+ #players::before{inset:-8px;border-radius:21px;box-shadow:0 0 10px rgba(0,240,240,.22),0 0 22px rgba(0,240,240,.08)}
 }
